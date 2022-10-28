@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>5-A</title>
+    <style>
+      #desenho1 {
+        border: 1px solid #000000;
+        /* border-radius: 100px; */
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="desenho1" width="1000px" height="400px"> </canvas>
+
+    <script type="text/javascript">
+      let canvas = document.getElementById("desenho1");
+      let ctx = canvas.getContext("2d");
+
+      function desenha(posX, posY, raio, angINI, angFim, Sentindo, cor) {
+        //primeiro
+        ctx.strokeStyle = "blue";
+        ctx.beginPath();
+        ctx.lineWidth = 2;
+        ctx.strokeRect(70, 150, 150, 110);
+
+        //TRIANGULO DO DESENHO
+        ctx.fillStyle = "blue";
+        ctx.beginPath();
+        ctx.moveTo(120, 230);
+        ctx.lineTo(180, 230);
+        ctx.lineTo(150, 180);
+        ctx.fill();
+        /////////////////////////////////////////////////////////////////////////
+
+        //segundo
+        ctx.beginPath();
+        ctx.strokeStyle = "blue";
+        ctx.lineWidth = 2;
+        ctx.arc(450, 200, 70, (Math.PI / 180) * 360, (Math.PI / 180) * 0);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.fillStyle = "blue";
+        ctx.fillRect(410, 160, 80, 80);
+        /////////////////////////////////////////////////////////////////////////
+
+        //terceiro
+        ctx.strokeStyle = "blue";
+        ctx.beginPath();
+        ctx.moveTo(685, 150);
+        ctx.lineTo(620, 250);
+        ctx.lineTo(750, 250);
+        ctx.lineWidth = 2;
+        ctx.closePath();
+        ctx.stroke();
+
+        ctx.strokeStyle = "blue";
+        ctx.beginPath();
+        ctx.moveTo(790, 150);
+        ctx.lineTo(720, 250);
+        ctx.lineTo(850, 250);
+        ctx.lineWidth = 2;
+        ctx.closePath();
+        ctx.stroke();
+      }
+
+      desenha();
+
+      //   desenha(100, 100, 50, 0, 360, false, "#ff0");
+    </script>
+  </body>
+</html>

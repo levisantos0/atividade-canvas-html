@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>6</title>
+    <style>
+      canvas {
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas width="600" height="600"></canvas>
+
+    <script>
+      let canvas = document.querySelector("canvas");
+      let ctx = canvas.getContext("2d");
+
+      let sonic = new Image();
+      sonic.src = "sonic.png";
+
+      function drawRect(x, y) {
+        ctx.drawImage(sonic, x, y, 100, 100);
+      }
+
+      let dirX;
+      let dirY;
+      let posX;
+      let posY;
+      let velocity;
+      let time;
+
+      function Start() {
+        dirX = dirY = posX = posY = 0;
+        velocity = 50;
+        time = setInterval(Update, 100);
+        document.addEventListener("keydown", KeyDown);
+        document.addEventListener("keyup", KeyUp);
+      }
+
+      function KeyDown() {
+        const key = event.key;
+        const keyDirection = {
+          ArrowRight: () => (dirX = 1),
+          ArrowLeft: () => (dirX = -1),
+          ArrowUp: () => (dirY = -1),
+          ArrowDown: () => (dirY = 1),
+        };
+        keyDirection[key]();
+      }
+
+      function KeyUp() {
+        const key = event.key;
+        const keyDirection = {
+          ArrowRight: () => (dirX = 0),
+          ArrowLeft: () => (dirX = 0),
+          ArrowUp: () => (dirY = 0),
+          ArrowDown: () => (dirY = 0),
+        };
+        keyDirection[key]();
+      }
+
+      function Update() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        posX += dirX * velocity;
+        posY += dirY * velocity;
+        drawRect(posX, posY);
+      }
+
+      window.addEventListener("load", Start);
+    </script>
+  </body>
+</html>
